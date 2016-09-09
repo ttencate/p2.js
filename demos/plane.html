@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Collision demo - p2.js physics engine</title>
+    <script src="../build/p2.js"></script>
+    <script src="../build/p2.renderer.js"></script>
+    <link href="css/demo.css" rel="stylesheet"/>
+    <meta name="description" content="Tests all combinations of shape collisions.">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+</head>
+<body>
+    <script>
+
+        // Create demo application
+        var app = new p2.WebGLRenderer(function(){
+
+            var world = new p2.World({
+                gravity : [0,-9.81]
+            });
+            this.setWorld(world);
+
+            var ground = new p2.Body({
+                position: [0, 2],
+            });
+            ground.addShape(new p2.Plane({}));
+            world.addBody(ground);
+
+            var ball = new p2.Body({
+                position: [0, 5],
+                mass: 1
+            });
+            ball.addShape(new p2.Circle({radius: 1}));
+            world.addBody(ball);
+
+            this.frame(0, 0, 12, 2);
+        });
+
+    </script>
+</body>
+</html>
